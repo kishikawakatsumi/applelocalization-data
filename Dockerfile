@@ -1,4 +1,4 @@
-FROM groonga/pgroonga:2.4.6-alpine-14
+FROM groonga/pgroonga:2.4.7-alpine-14
 
 COPY data.* .
 RUN cat data.sql.* > data.sql
