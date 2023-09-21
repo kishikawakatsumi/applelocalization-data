@@ -1,14 +1,15 @@
 version: "3.1"
 services:
   db:
-    image: groonga/pgroonga:2.4.6-alpine-14
-    container_name: postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       POSTGRES_DB: database
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
-      - 5432:5432
+      - 5432:10000
     volumes:
       - "./config:/var/lib/postgresql/config"
       - "./data:/var/lib/postgresql/data"
