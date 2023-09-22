@@ -20,7 +20,7 @@ RUN ["/usr/local/bin/docker-entrypoint.sh", "postgres", "-c", "config_file=/var/
 FROM groonga/pgroonga:3.1.3-alpine-15
 
 COPY --from=initdb /data $PGDATA
-COPY --from=initdb /config /var/lib/postgresql/config/
+COPY config/ /var/lib/postgresql/config/
 
 EXPOSE 10000
 CMD ["docker-entrypoint.sh", "-c", "config_file=/var/lib/postgresql/config/postgresql.conf"]
