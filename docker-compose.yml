@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kishikawakatsumi/applelocalization-data:latest
+    environment:
+      POSTGRES_DB: database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:10000
