@@ -1,6 +1,6 @@
 FROM ubuntu:jammy AS data
 
-COPY data.* .
+COPY data.* ./
 RUN cat data.sql.* > data.sql
 
 FROM groonga/pgroonga:3.1.5-alpine-15 as initdb
