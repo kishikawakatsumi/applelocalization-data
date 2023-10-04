@@ -1,0 +1,52 @@
+name: Deploy
+on:
+  workflow_dispatch:
+
+env:
+  RENDER_API_TOKEN: ${{ secrets.RENDER_API_TOKEN }}
+  RENDER_OWNER_ID: ${{ secrets.RENDER_OWNER_ID }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        run: |
+          set -ex
+
+          curl --request POST \
+               --url https://api.render.com/v1/services \
+               --header 'accept: application/json' \
+               --header 'authorization: Bearer ${{ env.RENDER_API_TOKEN }}' \
+               --header 'content-type: application/json' \
+               --data '
+          {
+            "type": "private_service",
+            "image": {
+              "ownerId": "${{ env.RENDER_OWNER_ID }}",
+              "imagePath": "docker.io/kishikawakatsumi/applelocalization-data:latest"
+            },
+            "serviceDetails": {
+              "env": "image",
+              "plan": "standard",
+              "region": "oregon"
+            },
+            "name": "applelocalization-data-20231004",
+            "ownerId": "${{ env.RENDER_OWNER_ID }}",
+            "envVars": [
+              {
+                "key": "POSTGRES_DB",
+                "value": "database"
+              },
+              {
+                "key": "POSTGRES_PASSWORD",
+                "value": "postgres"
+              },
+              {
+                "key": "POSTGRES_USER",
+                "value": "postgres"
+              }
+            ]
+          }
+          '
