@@ -19,33 +19,33 @@ jobs:
                --header 'accept: application/json' \
                --header 'authorization: Bearer ${{ env.RENDER_API_TOKEN }}' \
                --header 'content-type: application/json' \
-               --data '
+               --data "
           {
-            "type": "private_service",
-            "image": {
-              "ownerId": "${{ env.RENDER_OWNER_ID }}",
-              "imagePath": "docker.io/kishikawakatsumi/applelocalization-data:latest"
+            \"type\": \"private_service\",
+            \"image\": {
+              \"ownerId\": \"${{ env.RENDER_OWNER_ID }}\",
+              \"imagePath\": \"docker.io/kishikawakatsumi/applelocalization-data:latest\"
             },
-            "serviceDetails": {
-              "env": "image",
-              "plan": "standard",
-              "region": "oregon"
+            \"serviceDetails\": {
+              \"env\": \"image\",
+              \"plan\": \"standard\",
+              \"region\": \"oregon\"
             },
-            "name": "applelocalization-data-$(date +%Y%m%d%H%M)",
-            "ownerId": "${{ env.RENDER_OWNER_ID }}",
-            "envVars": [
+            \"name\": \"applelocalization-data-$(date +%Y%m%d%H%M)\",
+            \"ownerId\": \"${{ env.RENDER_OWNER_ID }}\",
+            \"envVars\": [
               {
-                "key": "POSTGRES_DB",
-                "value": "database"
+                \"key\": \"POSTGRES_DB\",
+                \"value\": \"database\"
               },
               {
-                "key": "POSTGRES_PASSWORD",
-                "value": "postgres"
+                \"key\": \"POSTGRES_PASSWORD\",
+                \"value\": \"postgres\"
               },
               {
-                "key": "POSTGRES_USER",
-                "value": "postgres"
+                \"key\": \"POSTGRES_USER\",
+                \"value\": \"postgres\"
               }
             ]
           }
-          '
+          "
