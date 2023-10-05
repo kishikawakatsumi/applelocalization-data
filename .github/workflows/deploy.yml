@@ -32,7 +32,7 @@ jobs:
               "plan": "standard",
               "region": "oregon"
             },
-            "name": "applelocalization-data-20231004",
+            "name": "applelocalization-data-$(date +%Y%m%d%H%M)",
             "ownerId": "${{ env.RENDER_OWNER_ID }}",
             "envVars": [
               {
