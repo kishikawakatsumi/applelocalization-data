@@ -1,4 +1,4 @@
-FROM ubuntu:jammy AS data
+FROM ubuntu:noble AS data
 
 COPY data.* ./
 RUN cat data.sql.* > data.sql
