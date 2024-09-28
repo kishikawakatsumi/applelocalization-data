@@ -3,7 +3,7 @@ FROM ubuntu:noble AS data
 COPY data.* ./
 RUN cat data.sql.* > data.sql
 
-FROM groonga/pgroonga:3.2.0-alpine-15 as initdb
+FROM groonga/pgroonga:3.2.3-alpine-15 as initdb
 
 COPY --from=data data.sql /docker-entrypoint-initdb.d/
 
@@ -16,7 +16,7 @@ ENV PGDATA=/data
 
 RUN ["/usr/local/bin/docker-entrypoint.sh", "postgres"]
 
-FROM groonga/pgroonga:3.2.0-alpine-15
+FROM groonga/pgroonga:3.2.3-alpine-15
 
 COPY --from=initdb /data $PGDATA
 COPY config/ /var/lib/postgresql/config/
